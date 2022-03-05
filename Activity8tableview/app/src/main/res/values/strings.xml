@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Activity8tableview</string>
+    <string name="comprar">Comprar</string>
+    <string name="pro1">https://www.amazon.com.mx/dp/B085S5NNK6</string>
+    <string name="pro2">https://www.amazon.com.mx/dp/B0837F1DBX</string>
+    <string name="pro3">https://www.amazon.com.mx/dp/B085S5NNK6</string>
+    <string name="pro4">https://www.amazon.com.mx/dp/B0837F1DBX</string>
+</resources>
