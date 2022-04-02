@@ -31,18 +31,23 @@ public class MainActivity extends AppCompatActivity {
         String detalle = detail.getText().toString();
         String precio = price.getText().toString();
         if(!codigo.isEmpty() && !detalle.isEmpty() && !precio.isEmpty()){
-            ContentValues registro = new ContentValues();
+            try {
+                ContentValues registro = new ContentValues();
 
-            registro.put("codigo", codigo);
-            registro.put("detalle", detalle);
-            registro.put("precio", precio);
-            BaseDatos.insert("articulos", null, registro);
-            BaseDatos.close();
-            code.setText("");
-            detail.setText("");
-            price.setText("");
+                registro.put("codigo", codigo);
+                registro.put("detalle", detalle);
+                registro.put("precio", precio);
+                BaseDatos.insert("articulos", null, registro);
+                BaseDatos.close();
+                code.setText("");
+                detail.setText("");
+                price.setText("");
 
-            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+            }catch (Exception e){
+                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+            }
+
         }else{
             Toast.makeText(this, "Debes llenar todos los datos", Toast.LENGTH_SHORT).show();
         }
@@ -75,15 +80,18 @@ public class MainActivity extends AppCompatActivity {
                         null,                   // don't filter by row groups
                         null               // The sort order
                 );
+
                 if(cursor.moveToFirst()){
-                    detalle= cursor.getString(0);
-                    detail.setText(detalle);
+                    detail.setText(cursor.getString(0));
+                    price.setText(cursor.getString(1));
                     BaseDatos.close();
                 }else{
                     Toast.makeText(this, "No existe el articulo", Toast.LENGTH_SHORT).show();
                 }
                 Toast.makeText(this, "Toma tu dato", Toast.LENGTH_SHORT).show();
-            }catch(Exception e){};
+            }catch(Exception e){
+                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+            };
 
         }else{
             Toast.makeText(this, "Ingresa un codigo valido", Toast.LENGTH_SHORT).show();
